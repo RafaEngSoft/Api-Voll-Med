@@ -10,7 +10,7 @@ import med.voll.api.endereco.DadosEndereco;
 
 public record DadosCadastroMedico(
         @NotBlank String nome,
-        @NotBlank @Pattern(regexp = "\\d{11") String telefone,
+        @NotBlank @Pattern(regexp = "\\d{11}") String telefone,
         @NotBlank @Email String email,
         @NotBlank @Pattern(regexp = "\\d{4,6}") String crm,
         @NotNull Especialidade especialidade,

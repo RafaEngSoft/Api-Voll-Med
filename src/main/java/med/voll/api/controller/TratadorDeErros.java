@@ -15,5 +15,6 @@ public class TratadorDeErros {
     }
 
     public record ErroResponse(String erro) {
+
     }
 }
