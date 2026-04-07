@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequestMapping("medicos")
 @RestController
@@ -37,7 +39,7 @@ public class MedicoController {
 
     @GetMapping
     public Page<DadosListagemMedicos> listar(@PageableDefault(size = 10, sort = { "nome" }) Pageable paginacao) {
-        return repository.findAll(paginacao).map(DadosListagemMedicos::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedicos::new);
     }
 
     @PutMapping
@@ -47,5 +49,12 @@ public class MedicoController {
         medico.atualizarInformacoes(dados);
         return ResponseEntity.ok(dados);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        var medico = repository.getReferenceById(id);
+        medico.excluir();
+    } 
 
 }
