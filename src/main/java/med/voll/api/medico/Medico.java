@@ -14,6 +14,8 @@ import jakarta.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 
+
+
 public class Medico {
 
     @Id
